@@ -1,0 +1,21 @@
+[
+	{
+		"id": 100,
+		"title": "from_mock_server_1",
+		"price": 5.0,
+		"content":"testContent",
+		"customerId":1
+	},{
+		"id": 200,
+		"title": "from_mock_server_2",
+		"price": 5.0,
+		"content":"testContent",
+		"customerId":1
+	},{
+		"id": 300,
+		"title": "from_mock_server_3",
+		"price": 5.0,
+		"content":"testContent",
+		"customerId":1
+	}
+]

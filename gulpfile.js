@@ -41,12 +41,10 @@ gulp.task('imagemin', function() {
 
 // minify new or changed HTML pages
 gulp.task('htmlpage', function() {
-  var htmlSrc = './src/*.html',
-      htmlDst = './build';
- 
-  gulp.src(htmlSrc)
-    .pipe(gulp.dest(htmlDst));
-
+  gulp.src('./src/*.html')
+    .pipe(gulp.dest('./build'));
+  gulp.src('./src/views/*.html')
+    .pipe(gulp.dest('./build/views'));
  // gulp.src(htmlSrc)
  //   .pipe(changed(htmlDst))
  //   .pipe(minifyHTML())
@@ -57,11 +55,25 @@ gulp.task('htmlpage', function() {
 gulp.task('scripts', function() {
   gulp.src(['./src/scripts/*.js'])
     .pipe(concat('app.js'))
+    .pipe(gulp.dest('./build/scripts/'));
+/*  gulp.src(['./src/scripts/*.js'])
+    .pipe(concat('app.js'))
     .pipe(stripDebug())
+    .pipe(gulp.dest('./build/scripts/'));*/
+  gulp.src(['./src/lib/script/angular.js'])
+    .pipe(concat('angular.js'))
     .pipe(gulp.dest('./build/scripts/'));
-  gulp.src(['./src/lib/angular.min.js'])
-    .pipe(concat('angular.min.js'))
+  gulp.src(['./src/lib/script/angular-route.js'])
+    .pipe(concat('angular-route.js'))
     .pipe(gulp.dest('./build/scripts/'));
+  gulp.src(['./src/lib/script/bootstrap.min.js'])
+    .pipe(concat('bootstrap.min.js'))
+    .pipe(gulp.dest('./build/scripts/'));
+  gulp.src(['./src/lib/script/jquery-1.11.1.min.js'])
+    .pipe(concat('jquery-1.11.1.min.js'))
+    .pipe(gulp.dest('./build/scripts/'));
+  gulp.src(['./src/mockserver/**/*.json'])
+    .pipe(gulp.dest('./build/mockserver/'));
 });
 
 // CSS concat, auto-prefix and minify
@@ -70,6 +82,12 @@ gulp.task('styles', function() {
     .pipe(concat('styles.css'))
     .pipe(autoprefix('last 2 versions'))
     .pipe(minifyCSS())
+    .pipe(gulp.dest('./build/styles/'));
+  gulp.src(['./src/lib/css/bootstrap.min.css'])
+    .pipe(concat('bootstrap.min.css'))
+    .pipe(gulp.dest('./build/styles/'));
+  gulp.src(['./src/lib/css/bootstrap-theme.min.css'])
+    .pipe(concat('bootstrap-theme.min.css'))
     .pipe(gulp.dest('./build/styles/'));
 });
 
